@@ -1603,3 +1603,140 @@
 
 
 
+/* Splash Container */
+#splash {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0f2027, #2c5364, #28a745);
+  overflow: hidden;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease;
+}
+
+/* Particles */
+.particles::before,
+.particles::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: moveParticles 20s linear infinite;
+}
+
+@keyframes moveParticles {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100px); }
+}
+
+/* Content */
+.splash-content {
+  text-align: center;
+  color: #fff;
+}
+
+/* Logo Animation */
+.splash-content img {
+  width: 170px;
+  animation: pulseGlow 2s infinite alternate;
+}
+
+/* Glow + Pulse */
+@keyframes pulseGlow {
+  0% {
+    transform: scale(0.9);
+    filter: drop-shadow(0 0 5px #fff);
+  }
+  100% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 25px #00ffcc);
+  }
+}
+
+/* Heading */
+.splash-content h2 {
+  margin-top: 15px;
+  font-size: 26px;
+  animation: fadeInUp 1.5s ease;
+}
+
+/* Tagline */
+.tagline {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-top: 5px;
+  animation: blink 1.5s infinite;
+}
+
+/* Loader Bar */
+.loader-bar {
+  width: 220px;
+  height: 5px;
+  background: rgba(255,255,255,0.3);
+  margin: 20px auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #00c6ff, #28a745);
+  animation: loadBar 3s linear forwards;
+}
+
+/* Animations */
+@keyframes loadBar {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Logo Image */ /*newly added header logo*/
+.logo-img {
+  height: 70px;   /* fills navbar height */
+  width: auto;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+/* Navbar height fix */
+.navbar {
+  min-height: 80px;
+}
+
+/* Align everything properly */
+.logo-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* newly added logo ends*/
+.logo-img {
+  height: 75px;
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.1);
+}
