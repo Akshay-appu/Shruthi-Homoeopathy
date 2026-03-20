@@ -438,7 +438,7 @@
 
 /*** Single Page Hero Header Start ***/
 .bg-breadcrumb {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/carousel-2.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../image/bg1.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -614,7 +614,7 @@
 
 /*** Appointment Start ***/
 .appointment {
-    background: linear-gradient(rgba(249, 250, 248, 0.9), rgba(249, 245, 245, 0.9)), url(../img/carousel-2.jpg);
+    background: linear-gradient(rgba(249, 250, 248, 0.9), rgba(249, 245, 245, 0.9)), url(../image/bg2.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -798,7 +798,7 @@
 
 /*** testimonial Start ***/
 .testimonial {
-    background: linear-gradient(rgba(31, 217, 21, 0.9), rgba(21, 185, 217, 0.9)), url(../img/carousel-1.jpg);
+    background: linear-gradient(rgba(31, 217, 21, 0.9), rgba(21, 185, 217, 0.9)), url(../image/bg3.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1054,7 +1054,7 @@
 
 /*** Contact Start ***/
 .contact {
-    background: linear-gradient(rgba(21, 217, 64, 0.9), rgba(21, 185, 217, 0.9)), url(../img/carousel-1.jpg);
+    background: linear-gradient(rgba(21, 217, 64, 0.9), rgba(21, 185, 217, 0.9)), url(../image/bg1.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1152,7 +1152,7 @@
 
 /*** Footer Start ***/
 .footer {
-    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(../img/carousel-2.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(../image/bg2.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
