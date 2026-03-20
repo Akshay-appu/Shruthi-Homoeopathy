@@ -32,6 +32,25 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
 
+    <!-- NEXT LEVEL SPLASH -->
+<div id="splash">
+
+  <div class="particles"></div>
+
+  <div class="splash-content">
+    <img src="image/SHRUTHI_logo.jpeg" alt="Shruthi Homoeopathy">
+
+    <h2>Shruthi Homoeopathy</h2>
+    <p class="tagline">Faith Leads • We Care • God Heals</p>
+
+    <div class="loader-bar">
+      <div class="progress"></div>
+    </div>
+
+  </div>
+
+</div>
+
     <body>
 
         <!-- Spinner Start -->
@@ -70,16 +89,16 @@
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
                 <a href="index.html" class="navbar-brand p-0">
-  <h2 class="m-0 logo-text">
+  <h2 class="m-0 logo-text d-flex align-items-center">
 
-    <img src="image/SHRUTHI_logo-removebg-preview.png" width="50" height="100">
+  <img src="image/SHRUTHI_logo-removebg-preview.png" class="logo-img">
 
-    <i class="fas fa-stethoscope stetho-icon"></i>
+  <i class="fas fa-stethoscope stetho-icon"></i>
 
-    <span class="blue">Shruthi</span> 
-    <span class="green">Homoeopathy</span>
+  <span class="blue">Shruthi</span> 
+  <span class="green">Homoeopathy</span>
 
-  </h2>
+</h2>
 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
@@ -1114,6 +1133,24 @@ function closePopup() {
 }
 </script>
 <!--end emailjs-->
+        <!--start pop opening-->
+<script>
+window.addEventListener("load", function () {
+
+  const splash = document.getElementById("splash");
+
+  setTimeout(() => {
+    splash.style.opacity = "0";
+
+    setTimeout(() => {
+      splash.style.display = "none";
+    }, 1000);
+
+  }, 3200); // matches progress bar timing
+
+});
+</script>
+<!--end popup closing-->
     </body>
 
 </html>
