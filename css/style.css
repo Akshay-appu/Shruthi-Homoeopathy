@@ -1381,7 +1381,7 @@
 .whatsapp-container {
   position: fixed;
   bottom: 180px;
-  right: 20px;
+  right: 37px;
   z-index: 999;
 }
 
@@ -1464,7 +1464,7 @@
 .call-container {
   position: fixed;
   bottom: 100px; /* move up */
-  right: 20px;
+  right: 35px;
   z-index: 999;
 }
 
