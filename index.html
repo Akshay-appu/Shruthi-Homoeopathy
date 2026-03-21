@@ -605,9 +605,9 @@
                                     <div class="col-xl-6">
                                         <select class="form-select py-3 border-primary bg-transparent" aria-label="Default select example">
                                             <option selected>Your Gender</option>
-                                            <option value="1">Male</option>
-                                            <option value="2">FeMale</option>
-                                            <option value="3">Others</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Others">Others</option>
                                         </select>
                                     </div>
                                     <div class="col-xl-6">
@@ -616,9 +616,9 @@
                                     <div class="col-xl-6">
                                         <select class="form-select py-3 border-primary bg-transparent" aria-label="Default select example">
                                             <option selected>Department</option>
-                                            <option value="1">Physiotherapy</option>
-                                            <option value="2">Physical Helth</option>
-                                            <option value="2">Treatments</option>
+                                            <option value="chief consultant">chief consultant</option>
+                                            <!-- <option value="2"></option>
+                                            <option value="2"></option> -->
                                         </select>
                                     </div>
                                     <div class="col-12">
@@ -1095,39 +1095,42 @@ document.getElementById("callNowBtn").addEventListener("click", function () {
 
 <script>
 (function(){
-  emailjs.init("0FjVqIv0m3fzw20fQ"); // replace public key
+    emailjs.init("0FjVqIv0m3fzw20fQ"); // replace this
 })();
 </script>
-
 <!--emailjs-->
     <script>
-document.getElementById("appointmentForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+document.querySelector(".appointment-form button").addEventListener("click", function (event) {
 
-    const loader = document.getElementById("loader");
-    loader.style.display = "block";
+    event.preventDefault();
 
-    emailjs.sendForm(
-        "service_1ve16ms", //service id//
-        "template_fz0if97", //template id//
-        this
-    ).then(() => {
+    console.log("Clicked ✅"); // debug
 
-        loader.style.display = "none";
-        document.getElementById("successPopup").style.display = "flex";
+    const inputs = document.querySelectorAll(".appointment-form input, .appointment-form select, .appointment-form textarea");
 
-        document.getElementById("appointmentForm").reset();
+    const data = {
+        first_name: inputs[0].value,
+        email: inputs[1].value,
+        phone: inputs[2].value,
+        gender: inputs[3].value,
+        date: inputs[4].value,
+        department: inputs[5].value,
+        message: inputs[6].value
+    };
 
-    }).catch((error) => {
+    console.log(data); // debug
 
-        loader.style.display = "none";
-        alert("❌ Failed! Try again.");
+    emailjs.send("service_1ve16ms", "template_fz0if97", data)
+    .then(function(response) {
+        alert("✅ Appointment Sent Successfully!");
+    }, function(error) {
+        alert("❌ Failed to send.");
         console.log(error);
-
     });
-});
 
-// Close popup
+});
+</script>
+<script>
 function closePopup() {
   document.getElementById("successPopup").style.display = "none";
 }
