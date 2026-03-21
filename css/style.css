@@ -927,6 +927,9 @@
     text-align: center;
     background: var(--bs-white);
 }
+.testimonial {
+    margin-top: 3cm;
+}
 
 .testimonial .testimonial-carousel .testimonial-item .testimonial-inner p.fs-7 {
     transition: 0.5s;
