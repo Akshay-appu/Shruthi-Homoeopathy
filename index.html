@@ -613,6 +613,19 @@
                                     <div class="col-xl-6">
                                         <input type="date" class="form-control py-3 border-primary bg-transparent">
                                     </div>
+                                     <div class="col-xl-6">
+    <select id="timeSlot" class="form-select py-3 border-primary bg-transparent">
+        <option selected>Select Time Slot</option>
+        <option value="10:00 AM – 2:00 PM">Morning (10:00 AM – 2:00 PM)</option>
+        <option value="4:30 PM – 8:00 PM">Evening (4:30 PM – 8:00 PM)</option>
+        <option value="custom">Custom Time</option>
+    </select>
+</div>
+
+<!-- Custom Time Input -->
+<div class="col-xl-6" id="customTimeDiv" style="display:none;">
+    <input type="time" id="customTime" class="form-control py-3 border-primary bg-transparent">
+</div>
                                     <div class="col-xl-6">
                                         <select class="form-select py-3 border-primary bg-transparent" aria-label="Default select example">
                                             <option selected>Department</option>
@@ -1089,25 +1102,33 @@ document.querySelector(".appointment-form button").addEventListener("click", fun
 
     event.preventDefault();
 
-    console.log("Clicked ✅"); // debug
-
     const inputs = document.querySelectorAll(".appointment-form input, .appointment-form select, .appointment-form textarea");
 
+    // 🔥 TIME LOGIC HERE
+    let selectedTime;
+
+    if (document.getElementById("timeSlot").value === "custom") {
+        selectedTime = document.getElementById("customTime").value;
+    } else {
+        selectedTime = document.getElementById("timeSlot").value;
+    }
+
+    // 🔥 DATA OBJECT
     const data = {
         first_name: inputs[0].value,
         email: inputs[1].value,
         phone: inputs[2].value,
         gender: inputs[3].value,
         date: inputs[4].value,
+        time: selectedTime, // ✅ added
         department: inputs[5].value,
         message: inputs[6].value
     };
 
-    console.log(data); // debug
-
+    // 🔥 SEND EMAIL
     emailjs.send("service_1ve16ms", "template_fz0if97", data)
     .then(function(response) {
-        alert("✅ Appointment Sent Successfully!");
+        alert("✅ Appointment Sent Successfully! <br> we will reach you soon.");
     }, function(error) {
         alert("❌ Failed to send.");
         console.log(error);
@@ -1115,6 +1136,7 @@ document.querySelector(".appointment-form button").addEventListener("click", fun
 
 });
 </script>
+<!--end emailjs-->
 <script>
 function closePopup() {
   document.getElementById("successPopup").style.display = "none";
@@ -1139,6 +1161,50 @@ window.addEventListener("load", function () {
 });
 </script>
 <!--end popup closing-->
+
+        <!--Set Minimum Date (Tomorrow)-->
+    <script>
+const dateInput = document.querySelector('input[type="date"]');
+
+// Get tomorrow's date
+let today = new Date();
+today.setDate(today.getDate() + 1);
+
+// Format to YYYY-MM-DD
+let minDate = today.toISOString().split("T")[0];
+
+// Set min attribute
+dateInput.setAttribute("min", minDate);
+</script>
+<!--Set Minimum Date (Tomorrow)-->
+
+<!--ADD TIME SLOT LOGIC-->
+<script>
+const timeSlot = document.getElementById("timeSlot");
+const customDiv = document.getElementById("customTimeDiv");
+
+timeSlot.addEventListener("change", function () {
+    if (this.value === "custom") {
+        customDiv.style.display = "block";
+    } else {
+        customDiv.style.display = "none";
+    }
+});
+</script>
+<!--SHOW/HIDE CUSTOM TIME-->
+<script>
+const timeSlot = document.getElementById("timeSlot");
+const customDiv = document.getElementById("customTimeDiv");
+
+timeSlot.addEventListener("change", function () {
+    if (this.value === "custom") {
+        customDiv.style.display = "block";
+    } else {
+        customDiv.style.display = "none";
+    }
+});
+</script>
+<!--ADD TIME SLOT LOGIC-->
     </body>
 
 </html>
