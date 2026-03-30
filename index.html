@@ -594,7 +594,7 @@
                         <div class="appointment-form rounded p-5">
                             <p class="fs-4 text-uppercase text-primary">Get In Touch</p>
                             <h1 class="display-5 mb-4">Get Appointment</h1>
-                            <form>
+                            <form onsubmit="sendAppointment(event)">
                                 <div class="row gy-3 gx-4">
                                     <div class="col-xl-6">
                                         <input type="text" class="form-control py-3 border-primary bg-transparent text-white" placeholder="First Name">
@@ -606,8 +606,8 @@
                                         <input type="phone" class="form-control py-3 border-primary bg-transparent" placeholder="Phone">
                                     </div>
                                     <div class="col-xl-6">
-                                        <select class="form-select py-3 border-primary bg-transparent" aria-label="Default select example">
-                                            <option selected>Your Gender</option>
+                                        <select id="gender" class="form-select py-3 border-primary bg-transparent" aria-label="Default select example">
+                                            <option value="" selected disabled>Your Gender</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                             <option value="Others">Others</option>
@@ -618,7 +618,7 @@
                                     </div>
                                      <div class="col-xl-6">
     <select id="timeSlot" class="form-select py-3 border-primary bg-transparent">
-        <option selected>Select Time Slot</option>
+        <option value="" selected disabled>Select Time Slot</option>
         <option value="10:00 AM – 2:00 PM">Morning (10:00 AM – 2:00 PM)</option>
         <option value="4:30 PM – 8:00 PM">Evening (4:30 PM – 8:00 PM)</option>
     </select>
@@ -629,8 +629,8 @@
     <input type="time" id="customTime" class="form-control py-3 border-primary bg-transparent">
 </div>
                                     <div class="col-xl-6">
-                                        <select class="form-select py-3 border-primary bg-transparent" aria-label="Default select example">
-                                            <option selected>Department</option>
+                                        <select id="department" class="form-select py-3 border-primary bg-transparent" aria-label="Default select example">
+                                            <option value="" selected disabled>Department</option>
                                             <option value="chief consultant">chief consultant</option>
                                             <!-- <option value="2"></option>
                                             <option value="2"></option> -->
@@ -640,7 +640,9 @@
                                         <textarea class="form-control border-primary bg-transparent text-white" name="text" id="area-text" cols="30" rows="5" placeholder="Write Comments"></textarea>
                                     </div>
                                     <div class="col-12">
-                                        <button type="button" onclick="sendAppointment()" class="btn btn-primary text-white w-100 py-3 px-5">sendAppointment
+                                        <button id="submitBtn" type="submit" class="btn btn-primary text-white w-100 py-3 px-5">
+    Send Appointment
+</button>
                                     </div>
                                 </div>
                             </form>
@@ -1368,29 +1370,35 @@ document.addEventListener("click", function (event) {
         
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-        <script>
+
+<script>
 (function(){
-    emailjs.init("0FjVqIv0m3fzw20fQ"); // 🔥 paste your public key here
+    emailjs.init("0FjVqIv0m3fzw20fQ");
 })();
 
-function sendAppointment() {
+function sendAppointment(e) {
+    e.preventDefault(); // ✅ THIS MUST WORK
 
-    // 🔥 SHOW LOADER
-    document.getElementById("loader").style.display = "block";
-
-    // GET VALUES
     let name = document.querySelector("input[placeholder='First Name']").value;
     let email = document.querySelector("input[placeholder='Email']").value;
     let phone = document.querySelector("input[placeholder='Phone']").value;
-    let gender = document.querySelector("select").value;
+    let gender = document.getElementById("gender").value;
     let date = document.querySelector("input[type='date']").value;
     let time = document.getElementById("timeSlot").value;
-    let department = document.querySelectorAll("select")[1].value;
+    let department = document.getElementById("department").value;
     let message = document.getElementById("area-text").value;
 
-    // TEMPLATE PARAMS
-    let params = {
-        from_name: name,
+    if (!name || !phone || !date || !time || department === "") {
+        alert("Please fill all required fields");
+        return;
+    }
+
+    let btn = document.getElementById("submitBtn");
+    btn.innerText = "Sending...";
+    btn.disabled = true;
+
+    emailjs.send("service_1ve16ms", "template_fz0if97", {
+        first_name: name,
         email: email,
         phone: phone.replace(/\D/g, ""),
         gender: gender,
@@ -1398,30 +1406,41 @@ function sendAppointment() {
         time: time,
         department: department,
         message: message
-    };
+    }).then(function () {
+        console.log("Email sent successfully");
 
-    // SEND EMAIL
-    emailjs.send("service_1ve16ms", "template_fz0if97", params)
-    .then(function(response) {
-
-        // 🔥 HIDE LOADER
-        document.getElementById("loader").style.display = "none";
-
-        // 🔥 SHOW SUCCESS POPUP
         document.getElementById("successPopup").style.display = "flex";
-
-        // CLEAR FORM
         document.querySelector("form").reset();
 
-    }, function(error) {
+        btn.innerText = "Send Appointment";
+        btn.disabled = false;
 
-        document.getElementById("loader").style.display = "none";
-        alert("❌ Failed to send. Try again.");
+        setTimeout(() => {
+            closePopup();
+        }, 3000);
 
+        let clinicNumber = "919632117374";
+
+        let whatsappMessage =
+            `Hello, I would like to book an appointment at Shruthi Homoeopathy.%0A%0A` +
+            `👤 Name: ${name}%0A` +
+            `📞 Phone: ${phone}%0A` +
+            `📅 Date: ${date}%0A` +
+            `⏰ Time: ${time}%0A` +
+            `🏥 Department: ${department}%0A%0A` +
+            `📝 Message: ${message}%0A%0A` +
+            `FAITH LEADS • WE CARE • GOD HEALS`;
+
+        window.open(`https://wa.me/${clinicNumber}?text=${whatsappMessage}`, "_blank");
+
+    }, function () {
+        alert("Failed to send appointment");
+        btn.innerText = "Send Appointment";
+        btn.disabled = false;
     });
 }
-
-// CLOSE POPUP
+console.log("Error:", error);
+// ✅ OUTSIDE FUNCTION
 function closePopup() {
     document.getElementById("successPopup").style.display = "none";
 }
