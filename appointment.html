@@ -614,7 +614,7 @@ document.addEventListener("click", function (event) {
 })();
 
 function sendAppointment(e) {
-    e.preventDefault(); // ✅ THIS MUST WORK
+    e.preventDefault(); // ✅ stop refresh
 
     let name = document.querySelector("input[placeholder='First Name']").value;
     let email = document.querySelector("input[placeholder='Email']").value;
@@ -634,16 +634,25 @@ function sendAppointment(e) {
     btn.innerText = "Sending...";
     btn.disabled = true;
 
+    // ✅ CLEAN PHONE (REMOVE SYMBOLS)
+    let cleanPhone = phone.replace(/\D/g, "");
+
+    // ✅ ADD INDIA CODE IF MISSING
+    if (cleanPhone.length === 10) {
+        cleanPhone = "91" + cleanPhone;
+    }
+
     emailjs.send("service_1ve16ms", "template_fz0if97", {
         first_name: name,
         email: email,
-        phone: phone.replace(/\D/g, ""),
+        phone: cleanPhone,
         gender: gender,
         date: date,
         time: time,
         department: department,
         message: message
     }).then(function () {
+
         console.log("Email sent successfully");
 
         document.getElementById("successPopup").style.display = "flex";
@@ -658,27 +667,37 @@ function sendAppointment(e) {
 
         let clinicNumber = "919632117374";
 
+        // ✅ CLEAN & PROFESSIONAL MESSAGE (NO %0A)
         let whatsappMessage =
-            `Hello, I would like to book an appointment at Shruthi Homoeopathy.%0A%0A` +
-            `👤 Name: ${name}%0A` +
-            `📞 Phone: ${phone}%0A` +
-            `📅 Date: ${date}%0A` +
-            `⏰ Time: ${time}%0A` +
-            `🏥 Department: ${department}%0A%0A` +
-            `📝 Message: ${message}%0A%0A` +
-            `Kindly review this request and respond at your convenience.
-            Sent via website appointment form`;
+`Hello, I would like to book an appointment at Shruthi Homoeopathy.
 
-        window.open(`https://wa.me/${clinicNumber}?text=${whatsappMessage}`, "_blank");
+Name: ${name}
+Phone: ${cleanPhone}
+Date: ${date}
+Time: ${time}
+Department: ${department}
 
-    }, function () {
+Message:
+${message}
+
+----------------------------
+
+Requesting appointment confirmation.
+Sent via website enquiry form`;
+
+        // ✅ SAFE WHATSAPP OPEN
+        window.open(`https://wa.me/${clinicNumber}?text=${encodeURIComponent(whatsappMessage)}`, "_blank");
+
+    }, function (error) {
+        console.log("Error:", error); // ✅ FIXED (moved inside)
         alert("Failed to send appointment");
+
         btn.innerText = "Send Appointment";
         btn.disabled = false;
     });
 }
-console.log("Error:", error);
-// ✅ OUTSIDE FUNCTION
+
+// ✅ KEEP THIS FUNCTION
 function closePopup() {
     document.getElementById("successPopup").style.display = "none";
 }
