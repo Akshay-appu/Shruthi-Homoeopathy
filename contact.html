@@ -220,6 +220,252 @@
             </div>
         </div>
         <!-- Contact End -->
+        <!-- Call Floating Button -->
+<div style="position:fixed; bottom:98px; right:35px; z-index:999;">
+
+  <!-- Call Icon -->
+  <div onclick="toggleCallBox()" 
+       style="width:60px; height:60px; background:#007bff; color:#fff;
+       font-size:24px; border-radius:50%; display:flex; align-items:center;
+       justify-content:center; cursor:pointer;
+
+       /* 🔥 Zoom Animation */
+       animation:zoomCall 2s infinite;">
+       
+       <i class="fas fa-phone-alt"></i>
+  </div>
+
+  <!-- Call Popup -->
+  <div id="callBox" 
+       style="width:260px; background:#fff; border-radius:10px;
+       box-shadow:0 5px 20px rgba(0,0,0,0.2); display:none;
+       margin-bottom:10px; overflow:hidden;">
+
+    <!-- Header -->
+    <div style="background:#007bff; color:#fff; padding:10px;
+                display:flex; justify-content:space-between;">
+      <strong>Shruthi Homoeopathy</strong>
+      <span>Call Support</span>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:15px; font-size:14px;">
+      <p>📞 Need help?</p>
+      <p>Call us for instant assistance.</p>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:10px; text-align:center;">
+      <a href="tel:+919632117374"
+         style="background:#007bff; color:#fff; padding:8px 15px;
+         border-radius:5px; text-decoration:none;">
+         Call Now
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Animation -->
+<style>
+@keyframes zoomCall {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+</style>
+
+<!-- JavaScript -->
+<script>
+function toggleCallBox() {
+  const box = document.getElementById("callBox");
+
+  if (box.style.display === "block") {
+    box.style.display = "none";
+  } else {
+    box.style.display = "block";
+  }
+}
+
+// Close when clicking outside
+document.addEventListener("click", function (event) {
+  const box = document.getElementById("callBox");
+  const icon = event.target.closest("[onclick='toggleCallBox()']");
+
+  if (!box.contains(event.target) && !icon) {
+    box.style.display = "none";
+  }
+});
+</script>
+
+<!-- WhatsApp Floating Button -->
+<div style="position:fixed; bottom:170px; right:35px; z-index:999;">
+
+  <!-- Floating Icon -->
+  <div onclick="toggleWhatsAppBox()" 
+       style="width:60px; height:60px; background:#25D366; color:#fff;
+       font-size:26px; border-radius:50%; display:flex; align-items:center;
+       justify-content:center; cursor:pointer;
+
+       /* 🔥 Zoom Animation */
+       animation:zoomAnim 2s infinite;">
+       
+       <i class="fab fa-whatsapp"></i>
+  </div>
+
+  <!-- Popup Box -->
+  <div id="whatsappBox" 
+       style="width:260px; background:#fff; border-radius:10px;
+       box-shadow:0 5px 20px rgba(0,0,0,0.2); display:none;
+       margin-bottom:10px; overflow:hidden;">
+
+    <!-- Header -->
+    <div style="background:#25D366; color:#fff; padding:10px;
+                display:flex; justify-content:space-between;">
+      <strong>Shruthi Homoeopathy</strong>
+      <span>Online</span>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:15px; font-size:14px;">
+      <p>👋 Hello! Welcome to Shruthi Homoeopathy.</p>
+      <p>How can we help you today?</p>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:10px; text-align:center;">
+      <a href="https://wa.me/919632117374?text=Hello%20I%20need%20consultation"
+         target="_blank"
+         style="background:#25D366; color:#fff; padding:8px 15px;
+         border-radius:5px; text-decoration:none;">
+         Start Chat
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Animation -->
+<style>
+@keyframes zoomAnim {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+</style>
+
+<!-- JavaScript -->
+<script>
+function toggleWhatsAppBox() {
+  const box = document.getElementById("whatsappBox");
+
+  if (box.style.display === "block") {
+    box.style.display = "none";
+  } else {
+    box.style.display = "block";
+  }
+}
+
+// Close when clicking outside
+document.addEventListener("click", function (event) {
+  const box = document.getElementById("whatsappBox");
+  const icon = event.target.closest("[onclick='toggleWhatsAppBox()']");
+
+  if (!box.contains(event.target) && !icon) {
+    box.style.display = "none";
+  }
+});
+</script>
+      
+   <!-- Google Review Floating Button -->
+<div style="position:fixed; bottom:241px; right:35px; z-index:999;">
+  <!-- Floating Icon -->
+  <div onclick="toggleGoogleBox()" 
+       style="width:60px; height:60px; background:#ea4335; color:#fff;
+       font-size:26px; border-radius:50%; display:flex; align-items:center;
+       justify-content:center; cursor:pointer;
+
+       /* 🔥 Zoom Animation */
+       animation:zoomGoogle 2s infinite;">
+       
+       <i class="fab fa-google"></i>
+  </div>
+
+  <!-- Review Box -->
+  <div id="googleBox" 
+       style="width:260px; background:#fff; border-radius:10px;
+       box-shadow:0 5px 20px rgba(0,0,0,0.2); display:none;
+       margin-bottom:10px; overflow:hidden;">
+
+    <!-- Header -->
+    <div style="background:#ea4335; color:#fff; padding:10px;
+                display:flex; justify-content:space-between;">
+      <strong>Shruthi Homoeopathy</strong>
+      <span>Leave a Review</span>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:15px; font-size:14px;">
+      <p>⭐ We value your feedback!</p>
+      <p>Please share your experience with us on Google.</p>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:10px; text-align:center;">
+      <a href="https://www.google.com/maps/place/Shruthi+Homeo+pharmacy/@12.959022,78.2563698,17z/data=!4m8!3m7!1s0x3badeb048654c12f:0x99d348d073690b39!8m2!3d12.959022!4d78.2563698!9m1!1b1!16s%2Fg%2F11c71dy1xk!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D" 
+         target="_blank"
+         style="background:#ea4335; color:#fff; padding:8px 15px;
+         border-radius:5px; text-decoration:none;">
+         Write Review
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Animation -->
+<style>
+@keyframes zoomGoogle {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+</style>
+
+<!-- JavaScript -->
+<script>
+function toggleGoogleBox() {
+  const box = document.getElementById("googleBox");
+
+  if (box.style.display === "block") {
+    box.style.display = "none";
+  } else {
+    box.style.display = "block";
+  }
+}
+
+// Close when clicking outside
+document.addEventListener("click", function (event) {
+  const box = document.getElementById("googleBox");
+  const icon = event.target.closest("[onclick='toggleGoogleBox()']");
+
+  if (!box.contains(event.target) && !icon) {
+    box.style.display = "none";
+  }
+});
+</script>
 
 
         <!-- Footer Start -->
