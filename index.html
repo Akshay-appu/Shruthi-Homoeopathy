@@ -867,8 +867,9 @@
 
     <!-- LEFT IMAGE -->
     <div id="imageBox"
-         style="position:relative; width:48%; max-width:600px;
-         aspect-ratio: 4/3; overflow:hidden; border-radius:20px; flex:1 1 400px;">
+     style="position:relative; width:48%; max-width:600px;
+     aspect-ratio:4/3; overflow:hidden; border-radius:20px;
+     flex:1 1 400px;">
 
         <!-- BEFORE -->
         <img src="img/service-7.jpg"
@@ -989,7 +990,26 @@ window.addEventListener("touchmove", (e) => {
 
     slider.style.left = percent + "%";
     afterImg.style.width = percent + "%";
-});
+});               
+function responsiveFix() {
+    let screen = window.innerWidth;
+    let main = document.getElementById("mainSection");
+    let image = document.getElementById("imageBox");
+    let content = document.getElementById("contentBox");
+
+    if (screen < 768) {
+        main.style.flexDirection = "column";
+        image.style.width = "100%";   // 🔥 FULL WIDTH IMAGE
+        content.style.width = "100%";
+    } else {
+        main.style.flexDirection = "row";
+        image.style.width = "48%";
+        content.style.width = "48%";
+    }
+}
+
+window.addEventListener("load", responsiveFix);
+window.addEventListener("resize", responsiveFix);
 </script>
                 </div>
             </div>
