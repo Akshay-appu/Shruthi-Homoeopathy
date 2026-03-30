@@ -621,7 +621,6 @@
         <option selected>Select Time Slot</option>
         <option value="10:00 AM – 2:00 PM">Morning (10:00 AM – 2:00 PM)</option>
         <option value="4:30 PM – 8:00 PM">Evening (4:30 PM – 8:00 PM)</option>
-        <option value="custom">Custom Time</option>
     </select>
 </div>
 
@@ -641,7 +640,7 @@
                                         <textarea class="form-control border-primary bg-transparent text-white" name="text" id="area-text" cols="30" rows="5" placeholder="Write Comments"></textarea>
                                     </div>
                                     <div class="col-12">
-                                        <button type="button" class="btn btn-primary text-white w-100 py-3 px-5">SUBMIT NOW</button>
+                                        <button type="button" onclick="sendAppointment()" class="btn btn-primary text-white w-100 py-3 px-5">sendAppointment
                                     </div>
                                 </div>
                             </form>
@@ -650,6 +649,18 @@
                 </div>
             </div>
         </div>
+
+        <!-- Loader -->
+<div id="loader" class="loader"></div>
+
+<!-- Success Popup -->
+<div id="successPopup" class="success-popup">
+  <div class="popup-box">
+    <h3>✅ Appointment Sent!</h3>
+    <p>Thank you! We will contact you shortly.</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+</div>
 
         <!-- Loader -->
 <div id="loader" class="loader"></div>
@@ -1357,78 +1368,67 @@ document.addEventListener("click", function (event) {
         
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-<script>
+        <script>
 (function(){
-    emailjs.init("0FjVqIv0m3fzw20fQ"); // replace this
+    emailjs.init("0FjVqIv0m3fzw20fQ"); // 🔥 paste your public key here
 })();
-</script>
-<!--emailjs-->
-    <script>
 
-// 🔥 1. PASTE FUNCTION HERE (TOP)
-function formatTime(time) {
-    let [h, m] = time.split(":");
-    let ampm = h >= 12 ? "PM" : "AM";
-    h = h % 12 || 12;
-    return `${h}:${m} ${ampm}`;
-}
+function sendAppointment() {
 
+    // 🔥 SHOW LOADER
+    document.getElementById("loader").style.display = "block";
 
-// 🔥 2. YOUR BUTTON CLICK CODE
-document.querySelector(".appointment-form button").addEventListener("click", function (event) {
+    // GET VALUES
+    let name = document.querySelector("input[placeholder='First Name']").value;
+    let email = document.querySelector("input[placeholder='Email']").value;
+    let phone = document.querySelector("input[placeholder='Phone']").value;
+    let gender = document.querySelector("select").value;
+    let date = document.querySelector("input[type='date']").value;
+    let time = document.getElementById("timeSlot").value;
+    let department = document.querySelectorAll("select")[1].value;
+    let message = document.getElementById("area-text").value;
 
-    event.preventDefault();
-
-    const inputs = document.querySelectorAll(".appointment-form input, .appointment-form select, .appointment-form textarea");
-
-    let selectedTime;
-
-    let selectedTime;
-
-const selectedOption = document.getElementById("timeSlot").value;
-
-if (selectedOption === "custom") {
-
-    const rawTime = document.getElementById("customTime").value;
-
-    if (!rawTime) {
-        alert("⏰ Please select a custom time");
-        return;
-    }
-
-    selectedTime = formatTime(rawTime);
-
-} else if (selectedOption === "Select Time Slot") {
-
-    alert("⏰ Please select a time slot");
-    return;
-
-} else {
-    selectedTime = selectedOption;
-}
-
-    const data = {
-        first_name: inputs[0].value,
-        email: inputs[1].value,
-        phone: inputs[2].value,
-        gender: inputs[3].value,
-        date: inputs[4].value,
-        time: selectedTime,
-        department: inputs[5].value,
-        message: inputs[6].value
+    // TEMPLATE PARAMS
+    let params = {
+        from_name: name,
+        email: email,
+        phone: phone.replace(/\D/g, ""),
+        gender: gender,
+        date: date,
+        time: time,
+        department: department,
+        message: message
     };
 
-    emailjs.send("service_1ve16ms", "template_fz0if97", data)
+    // SEND EMAIL
+    emailjs.send("service_1ve16ms", "template_fz0if97", params)
     .then(function(response) {
-        alert("✅ Appointment Sent Successfully! we will reach out you soon.");
-    }, function(error) {
-        alert("❌ Failed");
-        console.log(error);
-    });
 
-});
+        // 🔥 HIDE LOADER
+        document.getElementById("loader").style.display = "none";
+
+        // 🔥 SHOW SUCCESS POPUP
+        document.getElementById("successPopup").style.display = "flex";
+
+        // CLEAR FORM
+        document.querySelector("form").reset();
+
+    }, function(error) {
+
+        document.getElementById("loader").style.display = "none";
+        alert("❌ Failed to send. Try again.");
+
+    });
+}
+
+// CLOSE POPUP
+function closePopup() {
+    document.getElementById("successPopup").style.display = "none";
+}
 </script>
+        
+
+
 <!--end emailjs-->
 <script>
 function closePopup() {
