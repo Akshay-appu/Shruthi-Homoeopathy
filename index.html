@@ -863,58 +863,66 @@
                     <p class="mb-0">Explore the visible improvements achieved through our personalized homeopathic treatments, designed to provide safe, natural, and long-lasting healing by addressing the root cause of the condition.</p>
                 </div>
                 <div id="mainSection"
-     style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
-     gap:30px; padding:40px 5%;">
+     style="display:flex; flex-wrap:wrap; align-items:center; gap:30px; padding:40px 5%;">
 
-    <!-- LEFT: IMAGE -->
+    <!-- LEFT IMAGE -->
     <div id="imageBox"
-         style="position:relative; width:48%; max-width:600px; overflow:hidden; border-radius:20px; flex:1 1 400px;">
+         style="position:relative; width:48%; max-width:600px; height:auto;
+         overflow:hidden; border-radius:20px; flex:1 1 400px;">
 
-        <!-- Before -->
-        <img src="img/service-7.jpg" style="width:100%; display:block;">
+        <!-- BEFORE IMAGE -->
+        <img src="img/service-7.jpg"
+             style="width:100%; height:auto; display:block;">
 
-        <!-- After -->
+        <!-- AFTER IMAGE -->
         <img id="afterImgMain" src="img/service-8.jpg"
-             style="position:absolute; top:0; left:0; width:50%; height:100%;">
+             style="position:absolute; top:0; left:0; height:100%;
+             width:50%; object-fit:cover;">
 
-        <!-- Labels -->
-        <span style="position:absolute; left:10px; top:10px; background:rgba(0,0,0,0.6);
-                     color:#fff; padding:5px 10px; border-radius:5px;">
+        <!-- LABELS -->
+        <span style="position:absolute; left:10px; top:10px;
+                     background:rgba(0,0,0,0.6); color:#fff;
+                     padding:5px 10px; border-radius:5px;">
             Before
         </span>
 
-        <span style="position:absolute; right:10px; top:10px; background:rgba(0,0,0,0.6);
-                     color:#fff; padding:5px 10px; border-radius:5px;">
+        <span style="position:absolute; right:10px; top:10px;
+                     background:rgba(0,0,0,0.6); color:#fff;
+                     padding:5px 10px; border-radius:5px;">
             After
         </span>
 
-        <!-- Slider -->
+        <!-- SLIDER -->
         <div id="sliderMain"
-             style="position:absolute; top:0; left:50%; width:4px; height:100%;
-             background:#fff; cursor:ew-resize;">
+             style="position:absolute; top:0; left:50%;
+             width:3px; height:100%; background:#fff; cursor:ew-resize;">
 
-            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-                        background:#0dc5fd; color:#fff; padding:10px; border-radius:50%;">
+            <div style="position:absolute; top:50%; left:50%;
+                        transform:translate(-50%,-50%);
+                        background:#0dc5fd; color:#fff;
+                        padding:8px; border-radius:50%;">
                 ⇔
             </div>
         </div>
 
     </div>
 
-    <!-- RIGHT: CONTENT -->
-    <div id="contentBox" style="width:48%; flex:1 1 400px;">
+    <!-- RIGHT CONTENT -->
+    <div id="contentBox"
+         style="width:48%; flex:1 1 400px;">
 
-        <h2 style="font-size:32px; font-weight:bold; margin-bottom:15px;">
+        <h2 style="font-size:30px; margin-bottom:15px;">
             Our Treatment Results
         </h2>
 
         <p style="font-size:16px; color:#555; line-height:1.6; margin-bottom:20px;">
             Explore the visible improvements achieved through our personalized homeopathic treatments, 
-            designed to provide safe, natural, and long-lasting healing by addressing the root cause.
+            designed to provide safe, natural, and long-lasting healing.
         </p>
 
         <a href="service.html"
-           style="display:inline-block; padding:12px 25px; background:#0dc5fd; color:#fff;
+           style="display:inline-block; padding:12px 25px;
+           background:#0dc5fd; color:#fff;
            border-radius:30px; text-decoration:none;">
            View Services
         </a>
@@ -925,30 +933,24 @@
 
 <!-- ✅ RESPONSIVE FIX -->
 <script>
-function makeResponsive() {
-    const screen = window.innerWidth;
-    const main = document.getElementById("mainSection");
-    const image = document.getElementById("imageBox");
-    const content = document.getElementById("contentBox");
+function responsiveFix() {
+    let screen = window.innerWidth;
+    let main = document.getElementById("mainSection");
 
     if (screen < 768) {
         main.style.flexDirection = "column";
-        image.style.width = "100%";
-        content.style.width = "100%";
     } else {
         main.style.flexDirection = "row";
-        image.style.width = "48%";
-        content.style.width = "48%";
     }
 }
 
-window.addEventListener("load", makeResponsive);
-window.addEventListener("resize", makeResponsive);
+window.addEventListener("load", responsiveFix);
+window.addEventListener("resize", responsiveFix);
 </script>
 
 <!-- ✅ SLIDER JS -->
 <script>
-const container = document.getElementById("sliderMain").parentElement;
+const container = document.getElementById("imageBox");
 const slider = document.getElementById("sliderMain");
 const afterImg = document.getElementById("afterImgMain");
 
@@ -971,7 +973,7 @@ window.addEventListener("mousemove", (e) => {
     afterImg.style.width = percent + "%";
 });
 
-/* MOBILE */
+/* MOBILE FIX */
 slider.addEventListener("touchstart", () => isDragging = true);
 window.addEventListener("touchend", () => isDragging = false);
 
