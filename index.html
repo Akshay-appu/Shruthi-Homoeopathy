@@ -862,42 +862,47 @@
                     <h1 class="display-3 mb-4">Real results through safe and natural homeopathic care.</h1>
                     <p class="mb-0">Explore the visible improvements achieved through our personalized homeopathic treatments, designed to provide safe, natural, and long-lasting healing by addressing the root cause of the condition.</p>
                 </div>
-                <div style="display:flex; align-items:center; justify-content:space-between; gap:40px; padding:40px 5%;">
+                <div id="mainSection"
+     style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+     gap:30px; padding:40px 5%;">
 
-    <!-- LEFT: BEFORE AFTER IMAGE -->
-    <div style="position:relative; width:50%; max-width:600px; overflow:hidden; border-radius:20px;">
+    <!-- LEFT: IMAGE -->
+    <div id="imageBox"
+         style="position:relative; width:48%; max-width:600px; overflow:hidden; border-radius:20px; flex:1 1 400px;">
 
-    <!-- Before Image -->
-    <img src="img/service-7.jpg" style="width:100%; display:block;">
+        <!-- Before -->
+        <img src="img/service-7.jpg" style="width:100%; display:block;">
 
-    <!-- After Image -->
-    <img id="afterImgMain" src="img/service-8.jpg"
-         style="position:absolute; top:0; left:0; width:50%; height:100%;">
+        <!-- After -->
+        <img id="afterImgMain" src="img/service-8.jpg"
+             style="position:absolute; top:0; left:0; width:50%; height:100%;">
 
-    <!-- 🔥 ADD LABELS HERE -->
-    <span style="position:absolute; left:10px; top:10px; background:#000; color:#fff; padding:5px 10px; border-radius:5px;">
-        Before
-    </span>
+        <!-- Labels -->
+        <span style="position:absolute; left:10px; top:10px; background:rgba(0,0,0,0.6);
+                     color:#fff; padding:5px 10px; border-radius:5px;">
+            Before
+        </span>
 
-    <span style="position:absolute; right:10px; top:10px; background:#000; color:#fff; padding:5px 10px; border-radius:5px;">
-        After
-    </span>
+        <span style="position:absolute; right:10px; top:10px; background:rgba(0,0,0,0.6);
+                     color:#fff; padding:5px 10px; border-radius:5px;">
+            After
+        </span>
 
-    <!-- Slider -->
-    <div id="sliderMain"
-         style="position:absolute; top:0; left:50%; width:4px; height:100%; background:#fff; cursor:ew-resize;">
+        <!-- Slider -->
+        <div id="sliderMain"
+             style="position:absolute; top:0; left:50%; width:4px; height:100%;
+             background:#fff; cursor:ew-resize;">
 
-        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-                    background: rgba(0,0,0,0.6); color:#fff; padding:10px; border-radius:50%;">
-            ⇔
+            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+                        background:#0dc5fd; color:#fff; padding:10px; border-radius:50%;">
+                ⇔
+            </div>
         </div>
 
     </div>
 
-</div>
-
     <!-- RIGHT: CONTENT -->
-    <div style="width:50%;">
+    <div id="contentBox" style="width:48%; flex:1 1 400px;">
 
         <h2 style="font-size:32px; font-weight:bold; margin-bottom:15px;">
             Our Treatment Results
@@ -908,10 +913,9 @@
             designed to provide safe, natural, and long-lasting healing by addressing the root cause.
         </p>
 
-        <!-- BUTTON -->
         <a href="service.html"
            style="display:inline-block; padding:12px 25px; background:#0dc5fd; color:#fff;
-           border-radius:30px; text-decoration:none; font-weight:500;">
+           border-radius:30px; text-decoration:none;">
            View Services
         </a>
 
@@ -919,7 +923,30 @@
 
 </div>
 
-<!-- JS FOR SLIDER -->
+<!-- ✅ RESPONSIVE FIX -->
+<script>
+function makeResponsive() {
+    const screen = window.innerWidth;
+    const main = document.getElementById("mainSection");
+    const image = document.getElementById("imageBox");
+    const content = document.getElementById("contentBox");
+
+    if (screen < 768) {
+        main.style.flexDirection = "column";
+        image.style.width = "100%";
+        content.style.width = "100%";
+    } else {
+        main.style.flexDirection = "row";
+        image.style.width = "48%";
+        content.style.width = "48%";
+    }
+}
+
+window.addEventListener("load", makeResponsive);
+window.addEventListener("resize", makeResponsive);
+</script>
+
+<!-- ✅ SLIDER JS -->
 <script>
 const container = document.getElementById("sliderMain").parentElement;
 const slider = document.getElementById("sliderMain");
@@ -944,7 +971,7 @@ window.addEventListener("mousemove", (e) => {
     afterImg.style.width = percent + "%";
 });
 
-/* MOBILE SUPPORT */
+/* MOBILE */
 slider.addEventListener("touchstart", () => isDragging = true);
 window.addEventListener("touchend", () => isDragging = false);
 
@@ -961,7 +988,7 @@ window.addEventListener("touchmove", (e) => {
     slider.style.left = percent + "%";
     afterImg.style.width = percent + "%";
 });
-</script>      
+</script>
                 </div>
             </div>
         </div>
