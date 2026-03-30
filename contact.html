@@ -124,7 +124,7 @@
         <!-- Header End -->
 
 
-        <!-- Contact Start -->
+        <!-- Contact Start -->       
         <div class="container-fluid contact py-5">
             <div class="container py-5">
                 <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -137,7 +137,7 @@
                     <div class="col-lg-5 col-xl-5 contact-form wow fadeInLeft" data-wow-delay="0.1s">
                         <h2 class="display-5 text-white mb-2">Get in Touch</h2>
                         <p class="mb-4 text-white">At Shruthi Homoeopathy, we provide comprehensive homeopathic care through our clinic and pharmacy. Whether you need consultation, medicines, or guidance, our dedicated service ensures safe, natural, and effective treatment for your health concerns.</a>.</p>
-                        <form>
+                         <form id="contactForm">
                             <div class="row g-3">
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-floating">
@@ -158,15 +158,44 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent border border-white" id="project" placeholder="Project">
-                                        <label for="project">Your Project</label>
-                                    </div>
-                                </div>
+    <select id="Purpose"
+        onchange="handlePurposeChange()"
+        class="form-control bg-transparent border border-white text-white py-3">
+
+        <option value="" selected disabled style="color:#999;">
+            Purpose of Visit
+        </option>
+
+        <option value="Skincare" style="color:#000;">Skincare</option>
+        <option value="Hair Fall" style="color:#000;">Hair Fall</option>
+        <option value="Custom" style="color:#000;">Other (Custom)</option>
+
+    </select>
+</div>
+
+<!-- 🔥 HIDDEN TEXTBOX -->
+<div class="col-12" id="customPurposeBox" style="display:none;">
+    <input type="text"
+        id="customPurpose" 
+        placeholder="Enter your concern" 
+        class="form-control bg-transparent border border-white text-white py-3">
+</div>
+<script>
+function handlePurposeChange() {
+    let purpose = document.getElementById("Purpose").value;
+    let customBox = document.getElementById("customPurposeBox");
+
+    if (purpose === "Custom") {
+        customBox.style.display = "block";
+    } else {
+        customBox.style.display = "none";
+    }
+}
+</script>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control bg-transparent border border-white" id="subject" placeholder="Subject">
-                                        <label for="subject">Subject</label>
+                                        <input type="text" class="form-control bg-transparent border border-white" id="health" placeholder="Reason for Consultation">
+                                        <label for="subject">Reason for Consultation</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -176,11 +205,11 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-light text-primary w-100 py-3">Send Enquiry</button>
+                                    <button type="submit" class="btn btn-light text-primary w-100 py-3">Send Enquiry</button>
                                 </div>
                             </div>
                         </form>
-                    </div>
+                       </div>
                     <div class="col-lg-2 col-xl-2 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="bg-transparent rounded">
                             <div class="d-flex flex-column align-items-center text-center mb-4">
@@ -558,6 +587,98 @@ document.addEventListener("click", function (event) {
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+        e.preventDefault(); // ✅ stop refresh
+
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let phone = document.getElementById("phone").value;
+        let purpose = document.getElementById("Purpose").value;
+        let health = document.getElementById("health").value;
+        let message = document.getElementById("message").value;
+
+        // ✅ Handle custom purpose
+        if (purpose === "Custom") {
+            purpose = document.getElementById("customPurpose").value;
+        }
+
+        // ✅ Validation
+        if (!name || !phone || !purpose) {
+            alert("Please fill required fields");
+            return;
+        }
+
+        // ✅ Button loading effect
+        let btn = document.querySelector("#contactForm button");
+        btn.innerText = "Sending...";
+        btn.disabled = true;
+
+        // ✅ TIME + GREETING
+        let now = new Date();
+        let hours = now.getHours();
+
+        let greeting = "Hello";
+        if (hours < 12) greeting = "Good Morning";
+        else if (hours < 17) greeting = "Good Afternoon";
+        else greeting = "Good Evening";
+
+        // ✅ DATE & TIME
+        let date = now.toLocaleDateString();
+        let time = now.toLocaleTimeString();
+
+        // ✅ ENQUIRY ID
+        let enquiryID = "SH-" + Date.now().toString().slice(-6);
+
+        // ✅ WhatsApp number
+        let clinicNumber = "919632117374";
+
+        // ✅ WhatsApp message
+        let whatsappMessage =
+`*Shruthi Homoeopathy – Enquiry Request*
+
+${greeting} Doctor
+🆔 Enquiry ID: ${enquiryID}
+
+👤 Name: ${name}
+📞 Phone: ${phone}
+📧 Email: ${email}
+
+🩺 Purpose: ${purpose}
+📌 Concern: ${health}
+
+📝 Message:
+${message}
+
+📅 Date: ${date}
+⏰ Time: ${time}
+
+----------------------------
+
+Kindly review this enquiry and respond at your convenience.
+
+Sent via website enquiry form`;
+
+        // ✅ REDIRECT (BEST - no popup block)
+        window.location.href = `https://wa.me/${clinicNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+        // ✅ Reset form (optional, may not run after redirect but safe)
+        setTimeout(() => {
+            document.getElementById("contactForm").reset();
+
+            let box = document.getElementById("customPurposeBox");
+            if (box) box.style.display = "none";
+
+            btn.innerText = "Send Enquiry";
+            btn.disabled = false;
+        }, 1000);
+
+    });
+
+});
+</script>
         
     </body>
 
