@@ -867,16 +867,17 @@
 
     <!-- LEFT IMAGE -->
     <div id="imageBox"
-         style="position:relative; width:48%; max-width:600px; height:auto;
-         overflow:hidden; border-radius:20px; flex:1 1 400px;">
+         style="position:relative; width:48%; max-width:600px;
+         aspect-ratio: 4/3; overflow:hidden; border-radius:20px; flex:1 1 400px;">
 
-        <!-- BEFORE IMAGE -->
+        <!-- BEFORE -->
         <img src="img/service-7.jpg"
-             style="width:100%; height:auto; display:block;">
+             style="position:absolute; width:100%; height:100%; object-fit:cover;">
 
-        <!-- AFTER IMAGE -->
+        <!-- AFTER -->
         <img id="afterImgMain" src="img/service-8.jpg"
-             style="width:100%; height:auto; display:block;">
+             style="position:absolute; top:0; left:0;
+             width:50%; height:100%; object-fit:cover;">
 
         <!-- LABELS -->
         <span style="position:absolute; left:10px; top:10px;
@@ -910,7 +911,7 @@
     <div id="contentBox"
          style="width:48%; flex:1 1 400px;">
 
-        <h2 style="font-size:30px; margin-bottom:15px;">
+        <h2 style="font-size:28px; margin-bottom:15px;">
             Our Treatment Results
         </h2>
 
@@ -972,7 +973,7 @@ window.addEventListener("mousemove", (e) => {
     afterImg.style.width = percent + "%";
 });
 
-/* MOBILE FIX */
+/* MOBILE TOUCH */
 slider.addEventListener("touchstart", () => isDragging = true);
 window.addEventListener("touchend", () => isDragging = false);
 
