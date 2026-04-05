@@ -1545,6 +1545,79 @@ padding:10px;
 </div>
 
 <style>
+    <style>
+
+/* 📱 MOBILE OPTIMIZATION FOR CHATBOT */
+@media (max-width:768px){
+
+  /* 🔹 Chat Button Position */
+  #chatbot{
+    right: 12px !important;
+    bottom: 90px !important;
+    z-index: 9999;
+  }
+
+  /* 🔹 Chat Box Full Mobile Fit */
+  #chatBox{
+    width: 95vw !important;
+    height: 70vh !important;
+    max-height: 75vh !important;
+    right: 0 !important;
+    border-radius: 12px !important;
+  }
+
+  /* 🔹 Header Text */
+  #chatBox div:first-child{
+    font-size: 14px !important;
+    padding: 10px !important;
+  }
+
+  /* 🔹 Messages Area */
+  #chatMessages{
+    font-size: 13px !important;
+    padding: 8px !important;
+  }
+
+  /* 🔹 Input Field */
+  #chatInput{
+    font-size: 14px !important;
+    padding: 8px !important;
+  }
+
+  /* 🔹 Buttons */
+  #chatBox button{
+    padding: 8px !important;
+    font-size: 14px !important;
+  }
+
+  /* 🔹 Floating Button Size */
+  #chatbot > div{
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 18px !important;
+  }
+
+  /* 🔹 Notification Dot */
+  #notify{
+    font-size: 10px !important;
+    padding: 2px 5px !important;
+  }
+
+}
+
+/* 📱 EXTRA SMALL DEVICES */
+@media (max-width:480px){
+
+  #chatBox{
+    height: 65vh !important;
+  }
+
+  #chatMessages{
+    height: auto !important;
+  }
+
+}
+
 @keyframes zoomPulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.1); }
