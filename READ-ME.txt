@@ -1,9 +1,7 @@
-  =>  Template Name    : Terapia - Physical Therapy Website Template
+  =>  Website Name    : Shruthi Homoeopathy
 
-  =>  Template Link    : https://htmlcodex.com/physical-therapy-website-template
+  =>  Website Link    : https://akshay-appu.github.io/Shruthi-Homoeopathy/
 
-  =>  Template License : https://htmlcodex.com/license (or read the LICENSE.txt file)
+  =>  Website Author  : Akshay Kumar K N
 
-  =>  Template Author  : HTML Codex
-
-  =>  Author Website   : https://htmlcodex.com
+  =>  Author Website   : 
