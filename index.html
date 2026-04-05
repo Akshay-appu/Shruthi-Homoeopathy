@@ -1730,6 +1730,40 @@ sendMessage();
 };
 }
 </script>
+        <style>
+
+/* 📱 MOBILE FLOATING BUTTON FIX */
+@media (max-width:768px){
+
+  /* ✅ MAIN + BUTTON (keep higher) */
+  div[onclick="toggleMainMenu()"]{
+    position: fixed !important;
+    bottom: 140px !important;
+    right: 15px !important;
+    z-index: 9999;
+  }
+
+  /* ✅ ICONS ABOVE + BUTTON */
+  #allIcons{
+    bottom: 70px !important;
+    right: 0 !important;
+  }
+
+  /* ✅ CHATBOT (move down separately) */
+  #chatbot{
+    bottom: 20px !important;
+    right: 12px !important;
+    z-index: 9999;
+  }
+
+}
+
+/* 🔥 EXTRA SAFETY (NO OVERLAP EVER) */
+#chatbot{
+  margin-bottom: 0 !important;
+}
+
+</style>
 
         <!-- Footer Start -->
         <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
