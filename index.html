@@ -1115,7 +1115,7 @@ window.addEventListener("resize", responsiveFix);
         <!-- Blog End -->
          <!--start call Floating Button-->
 <!-- ➕ MAIN CONTAINER -->
-<div style="position: fixed;
+<div id="mainFloatingBtn" style="position: fixed;
    bottom: 180px;
    right: 35px;
    z-index: 999;">
@@ -1173,7 +1173,16 @@ window.addEventListener("resize", responsiveFix);
     50% { transform: scale(1.15); box-shadow: 0 0 25px rgba(34,197,94,0.9); }
     100% { transform: scale(1); box-shadow: 0 0 10px rgba(34,197,94,0.5); }
 }
+
+/* ✅ FINAL MOBILE FIX */
+@media (max-width: 768px) {
+  #mainFloatingBtn {
+    right: 10px !important;
+    bottom: 130px !important;
+  }
+}
 </style>
+
 
 
     <!-- 🔥 YOUR FULL EXISTING CODE (PASTE EXACTLY BELOW) -->
