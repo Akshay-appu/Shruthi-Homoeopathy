@@ -1728,8 +1728,23 @@ sendMessage();
          
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
-
+        <!-- Back to Top -->
+        <a href="#" 
+   class="btn btn-primary btn-lg-square back-to-top" 
+   style="
+   position: fixed;
+   bottom: 10px;
+   right: 34px;
+   z-index: 999;
+   ">
+   <i class="fa fa-arrow-up"></i>
+</a>
+<style>@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 90px !important;
+    right: 10px !important;
+  }
+}</style>
         
         <!-- JavaScript Libraries -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
