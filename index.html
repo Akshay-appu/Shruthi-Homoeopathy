@@ -186,7 +186,77 @@
                 </div>
             </div>
             <!-- Carousel End -->
-        </div>
+       <div id="ultimateBanner" style="
+    position:sticky;
+    top:0;
+    z-index:9998;
+    background: linear-gradient(90deg, #0ea5e9, #22c55e);
+    overflow:hidden;
+    white-space:nowrap;
+    border-radius:8px;
+    margin:10px 0;
+    box-shadow:0 4px 20px rgba(0,0,0,0.15);
+">
+
+    <div id="scrollText" style="
+        display:inline-block;
+        padding:12px 0;
+        font-weight:600;
+        font-size:16px;
+        color:white;
+        letter-spacing:0.5px;
+        animation: ultimateScroll 16s linear infinite;
+        text-shadow:0 0 8px rgba(255,255,255,0.3);
+    "
+    onmouseover="this.style.animationPlayState='paused'"
+    onmouseout="this.style.animationPlayState='running'">
+
+        🌿 Shruthi Homoeopathy – Gentle Healing, Lasting Wellness 🌿
+
+    </div>
+
+    <!-- Glow Effect -->
+    <div style="
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        animation: glowMove 3s linear infinite;
+        pointer-events:none;
+    "></div>
+
+</div>
+
+<style>
+@keyframes ultimateScroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+@keyframes glowMove {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+</style>
+
+<script>
+let messages = [
+    "🌿 Shruthi Homoeopathy – Gentle Healing, Lasting Wellness 🌿",
+    "✨ Personalized care for complete health and natural healing ✨",
+    "💚 Trusted homoeopathic solutions for long-term well-being 💚",
+    "🏥 Book your consultation today for a healthier tomorrow 🏥"
+];
+
+let index = 0;
+let text = document.getElementById("scrollText");
+
+setInterval(() => {
+    index = (index + 1) % messages.length;
+    text.innerHTML = messages[index];
+}, 6000);
+</script>
         <!-- Navbar & Hero End -->
          <div class="container">
   <div class="row g-4">
